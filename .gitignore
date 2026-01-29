@@ -1,0 +1,9 @@
+# Jekyll temporary files
+.jekyll-cache/
+.jekyll-metadata
+_site/
+
+# Other common web junk
+.DS_Store
+Thumbs.db
+node_modules/
