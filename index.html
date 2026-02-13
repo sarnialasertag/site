@@ -47,30 +47,13 @@
             background-position: 12px 0;
         }
         
-        #mobile-menu {
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            background-color: #320775;
+        /* Drawer Styles */
+        #mobile-nav-overlay {
+            transition: visibility 0.3s, opacity 0.3s;
         }
         
-        #mobile-menu.open {
-            max-height: 500px;
-            opacity: 1;
-        }
-        
-        @media (min-width: 768px) {
-            #mobile-menu-button {
-                display: none;
-            }
-        }
-        
-        #mobile-menu a {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
+        #mobile-nav-drawer {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .email-form-input {
@@ -272,6 +255,12 @@
             color: #5ede58 !important; 
         }
 
+        @media (max-width: 640px) {
+            .day-header-text {
+                font-size: 0.875rem !important;
+            }
+        }
+
         @keyframes float-planet {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(1deg); }
@@ -311,15 +300,15 @@
         /* Sparkle Animations */
         @keyframes sparkle-float-1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(0, -10px) scale(1.1); }
+            50% { transform: translate(0, -20px) scale(1.05); }
         }
         @keyframes sparkle-float-2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(0, -8px) scale(0.75); }
+            50% { transform: translate(0, -12px) scale(0.9); }
         }
         @keyframes sparkle-pulse {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
         }
         
         .animate-sparkle-1 {
@@ -330,6 +319,28 @@
         }
         .animate-sparkle-pulse {
             animation: sparkle-pulse 3s ease-in-out infinite;
+        }
+
+        /* Hero Text Animation Classes */
+        .prefix-item {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        .slide-up-enter {
+            animation: slide-up-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        .slide-up-exit {
+            animation: slide-up-out 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        @keyframes slide-up-in {
+            0% { opacity: 0; transform: translateY(80%); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slide-up-out {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-80%); }
         }
     </style>
     <script>
@@ -374,7 +385,7 @@
 </head>
 <body class="bg-arena-black text-arena-white">
 
-    <header class="sticky top-0 z-50 bg-arena-dark-purple bg-opacity-95 backdrop-blur-sm shadow-md">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-arena-dark-purple bg-opacity-95 backdrop-blur-sm shadow-md transition-transform duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" class="block" aria-label="The Arena Home">
                 <img src="/images/assets/logo/logo_tagline.svg" alt="The Arena - Laser Tag, Rock Climbing, Mini Golf" class="h-12 w-auto">
@@ -388,26 +399,42 @@
                 <a href="#projects" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Projects</a>
                 <a href="#contact" class="btn-primary bg-arena-purple text-arena-white hover:bg-arena-deep-purple !px-6 !py-2">Get Started</a>
             </nav>
-
-            <button id="mobile-menu-button" class="p-2 text-arena-green focus:outline-none" aria-label="Open Menu" aria-expanded="false">
-                <i class="ph ph-list ph-bold text-3xl"></i>
-            </button>
-        </div>
-
-        <div id="mobile-menu">
-            <nav class="px-4 pt-4 pb-4 space-y-2 sm:px-6 text-center" aria-label="Mobile Navigation">
-                <a href="#pricing" class="block text-base font-medium text-arena-lavender hover:bg-arena-purple">Pricing</a>
-                <a href="#services" class="block text-base font-medium text-arena-lavender hover:bg-arena-purple">Activities</a>
-                <a href="#weekend-warrior-deal" class="block text-base font-medium text-arena-lavender hover:bg-arena-purple">Specials</a>
-                <a href="#gift-cards" class="block text-base font-medium text-arena-lavender hover:bg-arena-purple">Gift Cards</a>
-                <a href="#projects" class="block text-base font-medium text-arena-lavender hover:bg-arena-purple">Projects</a>
-                <a href="#contact" class="block text-base font-medium bg-arena-deep-purple text-arena-white hover:bg-arena-deep-purple-dark mt-2">Get Started</a>
-            </nav>
         </div>
     </header>
 
-    <main>
-<section class="relative overflow-hidden pt-24 pb-24 md:pt-40 md:pb-48 bg-arena-dark-purple isolate">
+    <!-- Floating Mobile Menu Button -->
+    <button id="floating-menu-button" class="md:hidden fixed bottom-6 right-6 z-[60] w-14 h-14 bg-arena-green text-arena-black rounded-full shadow-lg flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-arena-green/30 active:scale-95 transition-transform" aria-label="Open Menu">
+        <i class="ph ph-list ph-bold text-3xl"></i>
+    </button>
+
+    <!-- Side Navigation Drawer -->
+    <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 z-[100] bg-arena-black/70 backdrop-blur-sm opacity-0 invisible transition-all duration-300">
+        <div id="mobile-nav-drawer" class="absolute top-0 right-0 w-4/5 max-w-xs h-full bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6">
+            <div class="flex justify-between items-center mb-10">
+                <img src="/images/assets/logo/logo_tagline.svg" alt="The Arena" class="h-8 w-auto">
+                <button id="close-menu-button" class="p-2 text-arena-lavender hover:text-arena-white focus:outline-none">
+                    <i class="ph ph-x ph-bold text-3xl"></i>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col space-y-4 text-center" aria-label="Mobile Navigation">
+                <a href="#pricing" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Pricing</a>
+                <a href="#services" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Activities</a>
+                <a href="#weekend-warrior-deal" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Specials</a>
+                <a href="#gift-cards" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Gift Cards</a>
+                <a href="#projects" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Projects</a>
+                <a href="#contact" class="mobile-nav-link text-xl font-bold py-4 bg-arena-green text-arena-black hover:bg-arena-green-dark rounded-xl mt-6 transition-all">Get Started</a>
+            </nav>
+
+            <div class="mt-auto pb-6 text-center">
+                <p class="text-arena-lavender/60 text-sm">Need help?</p>
+                <a href="tel:5195421001" class="text-arena-white font-bold text-lg">519-542-1001</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="pt-20"> <!-- Added padding to account for fixed header -->
+        <section class="relative overflow-hidden pt-24 pb-24 md:pt-20 md:pb-48 bg-arena-dark-purple isolate">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-arena-purple/30 via-arena-dark-purple to-arena-dark-purple pointer-events-none -z-10"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
@@ -432,17 +459,24 @@
                 
 
                 <h1 class="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-tight mb-8 relative z-20 drop-shadow-lg">
-                    <span class="block text-arena-white mb-2">Sarnia Laser Tag</span>
-                    <span class="block text-arena-green text-transparent bg-clip-text bg-gradient-to-r from-arena-green to-arena-teal">Choose Your Adventure</span>
+                    <span class="block text-arena-white mb-2"><i class="ph ph-heart"></i></span>
+                    <span class="text-arena-white">For Your</span>
+                    <br class="sm:hidden">
+                    <span class="inline-flex items-baseline justify-center">
+                        <span id="hero-prefix-wrapper" class="inline-block relative overflow-hidden h-[1.1em] min-w-[1.15em] text-arena-yellow-dark leading-none">
+                            <span id="hero-prefix-text" class="inline-block">Val</span>
+                        </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-arena-pink to-arena-magenta">entine</span>
+                    </span>
                 </h1>
                 
                 <p class="text-xl md:text-2xl text-arena-light-purple max-w-3xl mx-auto mb-12 leading-relaxed">
-                    Step into Sarnia’s go-to spot for nonstop fun. Take aim in our multi-level laser tag arena, scale new heights on the rock wall, or chill with a round of mini golf. Your adventure starts here.
+                    From friends to loved ones, give them the special treatment
                 </p>
                 
                 <div class="relative z-20">
                     <a href="#weekend-warrior-deal" class="btn-primary bg-arena-yellow text-arena-black hover:bg-arena-yellow-dark text-lg px-10 py-4 transform hover:scale-105 transition-all duration-200">
-                        See Current Specials
+                        <i class="ph-duotone ph-gift text-2xl mr-3"></i>
+                        Purchase E-Gift Card
                     </a>
                 </div>
             </div>
@@ -459,7 +493,7 @@
                     
                     <div class="p-8 bg-arena-dark-gray/50 border border-arena-deep-purple rounded-xl transition duration-300">
                         <div class="mb-6 aspect-square rounded-lg overflow-hidden">
-                            <img src="/images/hero/lasertag-hero.webp" alt="Multi-level laser tag arena" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/21A9FC?text=Laser+Tag+Arena'" />
+                            <img src="/images/assets/lasertag-hero.webp" alt="Multi-level laser tag arena" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/21A9FC?text=Laser+Tag+Arena'" />
                         </div>
                         <div class="text-arena-blue mb-4">
                             <i class="ph-duotone ph-crosshair w-10 h-10 text-4xl"></i>
@@ -470,7 +504,7 @@
                     
                     <div class="p-8 bg-arena-dark-gray/50 border border-arena-deep-purple rounded-xl transition duration-300">
                         <div class="mb-6 aspect-square rounded-lg overflow-hidden">
-                            <img src="/images/hero/rockclimb-hero.webp" alt="Indoor rock climbing wall" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/B5267E?text=Rock+Climbing+Wall'" />
+                            <img src="/images/assets/rockclimb-hero.webp" alt="Indoor rock climbing wall" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/B5267E?text=Rock+Climbing+Wall'" />
                         </div>
                         <div class="text-arena-pale-magenta mb-4">
                             <i class="ph-duotone ph-mountains w-10 h-10 text-4xl"></i>
@@ -481,7 +515,7 @@
 
                     <div class="p-8 bg-arena-dark-gray/50 border border-arena-deep-purple rounded-xl transition duration-300">
                         <div class="mb-6 aspect-square rounded-lg overflow-hidden">
-                            <img src="/images/assets/homeasset04.webp" alt="Colorful mini golf course" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/5ede58?text=Mini+Golf+Course'" />
+                            <img src="/images/assets/minigolf-hero.webp" alt="Colorful mini golf course" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/5ede58?text=Mini+Golf+Course'" />
                         </div>
                         <div class="text-arena-green mb-4">
                             <i class="ph-duotone ph-golf w-10 h-10 text-4xl"></i>
@@ -1334,6 +1368,35 @@
             phoneAnimation(); 
         }
 
+        function initHeroPrefixRotation() {
+            const prefixes = ['Val', 'Gal', 'Pal'];
+            let currentIndex = 0;
+            const wrapper = document.getElementById('hero-prefix-wrapper');
+            const textEl = document.getElementById('hero-prefix-text');
+
+            setInterval(() => {
+                const nextIndex = (currentIndex + 1) % prefixes.length;
+
+                // Create a clone of the current element to exit
+                const exitEl = textEl.cloneNode(true);
+                exitEl.classList.add('prefix-item', 'slide-up-exit');
+                wrapper.appendChild(exitEl);
+
+                // Update original element for entry
+                textEl.textContent = prefixes[nextIndex];
+                textEl.classList.remove('slide-up-enter');
+                void textEl.offsetWidth; // Trigger reflow
+                textEl.classList.add('slide-up-enter');
+
+                // Cleanup exit element after animation finishes
+                setTimeout(() => {
+                    exitEl.remove();
+                }, 600);
+
+                currentIndex = nextIndex;
+            }, 3000);
+        }
+
         function updateBusinessHours() {
             const scheduleConfig = {
                 "default_hours": {
@@ -1454,23 +1517,61 @@
         document.addEventListener('DOMContentLoaded', () => {
             
             updateBusinessHours(); 
+            initHeroPrefixRotation();
 
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+            // Mobile Menu Logic
+            const menuButton = document.getElementById('floating-menu-button');
+            const closeButton = document.getElementById('close-menu-button');
+            const menuOverlay = document.getElementById('mobile-nav-overlay');
+            const menuDrawer = document.getElementById('mobile-nav-drawer');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-            function toggleMobileMenu() {
-                const isMenuOpen = mobileMenu.classList.toggle('open');
-                menuButton.setAttribute('aria-expanded', isMenuOpen ? 'true' : 'false');
+            function openMenu() {
+                menuOverlay.classList.remove('invisible');
+                menuOverlay.classList.add('opacity-100');
+                menuDrawer.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
             }
 
-            menuButton.addEventListener('click', toggleMobileMenu);
+            function closeMenu() {
+                menuOverlay.classList.remove('opacity-100');
+                menuDrawer.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    menuOverlay.classList.add('invisible');
+                }, 300);
+            }
 
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('open');
-                    menuButton.setAttribute('aria-expanded', 'false');
-                });
+            menuButton.addEventListener('click', openMenu);
+            closeButton.addEventListener('click', closeMenu);
+            
+            menuOverlay.addEventListener('click', (e) => {
+                if (e.target === menuOverlay) closeMenu();
             });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Header Scroll Logic
+            const header = document.getElementById('main-header');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                // Don't trigger if menu is open
+                if (document.body.style.overflow === 'hidden') return;
+
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    // Scrolling down - hide header
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up - show header
+                    header.style.transform = 'translateY(0)';
+                }
+                lastScrollY = currentScrollY;
+            }, { passive: true });
 
             const scrollContainer = document.getElementById('project-scroll-container');
             const prevBtn = document.getElementById('prev-btn');
