@@ -400,7 +400,7 @@
     <header id="main-header" class="absolute md:fixed top-0 left-0 right-0 z-50 bg-arena-dark-purple bg-opacity-95 backdrop-blur-sm shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" class="block" aria-label="The Arena Home">
-                <img src="/images/assets/logo/logo_tagline.svg" alt="The Arena - Laser Tag, Rock Climbing, Mini Golf" class="h-12 w-auto">
+                <img src="images/assets/logo/logo_tagline.svg" alt="The Arena - Laser Tag, Rock Climbing, Mini Golf" class="h-12 w-auto">
             </a>
 
             <nav class="hidden md:flex space-x-6 text-xs lg:text-sm font-medium items-center" aria-label="Main Navigation">
@@ -420,34 +420,52 @@
         <i class="ph ph-list ph-bold text-3xl"></i>
     </button>
 
-    <!-- Side Navigation Drawer -->
-    <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 z-[100] bg-arena-black/70 backdrop-blur-sm opacity-0 invisible transition-all duration-300">
-        <div id="mobile-nav-drawer" class="absolute top-0 right-0 w-4/5 max-w-xs bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6 overflow-hidden">
+    <!-- Side Navigation Drawer: Covers WHOLE page -->
+    <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 z-[100] bg-arena-black opacity-0 invisible transition-all duration-300">
+        <div id="mobile-nav-drawer" class="absolute inset-0 w-full bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6 overflow-hidden">
             
             <!-- Vertically and Horizontally Centered Content Wrapper -->
             <div class="flex-grow flex flex-col justify-center items-center w-full">
                 
-                <nav class="flex flex-col space-y-3 text-center mb-10 w-full" aria-label="Mobile Navigation">
-                    <a href="#services" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Activities</a>
-                    <a href="#pricing" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Pricing</a>
-                    <a href="#all-inclusive" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Book Online</a>
-                    <a href="#weekend-warrior-deal" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Specials & Promotions</a>
-                    <a href="#faq" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">FAQ</a>
-                    <a href="#hours" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Contact Us</a>
-                    <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Gift Cards</a>
+                <nav class="flex flex-col space-y-3 text-center mb-8 w-full" aria-label="Mobile Navigation">
+                    <a href="#services" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Activities</a>
+                    <a href="#pricing" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Pricing</a>
+                    <a href="#all-inclusive" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Book Online</a>
+                    <a href="#weekend-warrior-deal" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Specials & Promotions</a>
+                    <a href="#faq" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">FAQ</a>
+                    <a href="#hours" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Contact Us</a>
+                    <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-2xl font-extrabold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Gift Cards</a>
                 </nav>
 
-                <!-- Help Section integrated into centered content -->
-                <div class="text-center w-full max-w-[240px]">
-                    <p class="text-arena-lavender/60 text-sm mb-4 italic">Need help?</p>
-                    <a href="tel:5195421001" class="w-full flex items-center justify-center gap-3 py-4 bg-arena-blue text-white rounded-2xl font-bold text-lg hover:bg-arena-blue-dark transition-colors shadow-lg">
-                        <i class="ph ph-phone-call text-2xl"></i>
-                        Call Us Now
-                    </a>
+                <!-- Help & Social Section -->
+                <div class="text-center w-full max-w-[280px] space-y-8">
+                    <div class="space-y-4">
+                        <p class="text-arena-lavender/60 text-sm italic">Need help?</p>
+                        <a href="tel:5195421001" class="w-full flex items-center justify-center gap-3 py-4 bg-arena-blue text-white rounded-2xl font-bold text-lg hover:bg-arena-blue-dark transition-colors shadow-lg">
+                            <i class="ph ph-phone-call text-2xl"></i>
+                            Call Us Now
+                        </a>
+                    </div>
+
+                    <!-- Current Day Business Hours -->
+                    <div id="mobile-current-hours" class="bg-white/5 border border-white/10 rounded-2xl p-4 text-arena-lavender">
+                        <p class="text-xs uppercase tracking-widest opacity-60 mb-1">Today's Hours</p>
+                        <div id="mobile-today-hours-text" class="text-lg font-bold text-arena-white">Loading...</div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex justify-center space-x-8">
+                        <a href="https://www.facebook.com/thearenasarnia/" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110">
+                            <i class="ph-duotone ph-facebook-logo text-4xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/thearenasarnia" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110">
+                            <i class="ph-duotone ph-instagram-logo text-4xl"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Close Button mirroring Hamburger Button location exactly -->
+            <!-- Close Button mirrors Open Button location exactly -->
             <button id="close-menu-button" class="absolute w-14 h-14 bg-arena-magenta text-white rounded-full shadow-2xl flex items-center justify-center focus:outline-none active:scale-95 transition-all floating-action-button z-[110]" aria-label="Close Menu">
                 <i class="ph ph-x ph-bold text-3xl"></i>
             </button>
@@ -514,7 +532,7 @@
                     
                     <div class="p-8 bg-arena-dark-gray/50 border border-arena-deep-purple rounded-xl transition duration-300">
                         <div class="mb-6 aspect-square rounded-lg overflow-hidden">
-                            <img src="/images/assets/lasertag-hero.webp" alt="Multi-level laser tag arena" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/21A9FC?text=Laser+Tag+Arena'" />
+                            <img src="images/assets/lasertag-hero.webp" alt="Multi-level laser tag arena" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/21A9FC?text=Laser+Tag+Arena'" />
                         </div>
                         <div class="text-arena-blue mb-4">
                             <i class="ph-duotone ph-crosshair w-10 h-10 text-4xl"></i>
@@ -525,7 +543,7 @@
                     
                     <div class="p-8 bg-arena-dark-gray/50 border border-arena-deep-purple rounded-xl transition duration-300">
                         <div class="mb-6 aspect-square rounded-lg overflow-hidden">
-                            <img src="/images/assets/rockclimb-hero.webp" alt="Indoor rock climbing wall" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/B5267E?text=Rock+Climbing+Wall'" />
+                            <img src="images/assets/rockclimb-hero.webp" alt="Indoor rock climbing wall" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/B5267E?text=Rock+Climbing+Wall'" />
                         </div>
                         <div class="text-arena-pale-magenta mb-4">
                             <i class="ph-duotone ph-mountains w-10 h-10 text-4xl"></i>
@@ -536,7 +554,7 @@
 
                     <div class="p-8 bg-arena-dark-gray/50 border border-arena-deep-purple rounded-xl transition duration-300">
                         <div class="mb-6 aspect-square rounded-lg overflow-hidden">
-                            <img src="/images/assets/minigolf-hero.webp" alt="Colorful mini golf course" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/5ede58?text=Mini+Golf+Course'" />
+                            <img src="images/assets/minigolf-hero.webp" alt="Colorful mini golf course" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/5ede58?text=Mini+Golf+Course'" />
                         </div>
                         <div class="text-arena-green mb-4">
                             <i class="ph-duotone ph-golf w-10 h-10 text-4xl"></i>
@@ -768,7 +786,7 @@
                 <div class="lg:flex lg:items-center lg:justify-between lg:flex-row-reverse">
                     
                     <div class="lg:w-1/2 mb-10 lg:mb-0">
-                        <img src="/images/assets/homeasset03.webp" 
+                        <img src="images/assets/homeasset03.webp" 
                             alt="Three friends rock climbing and playing mini golf" 
                             class="rounded-xl shadow-glow-purple shadow-xl w-full"
                             onerror="this.onerror=null; this.src='https://placehold.co/800x600/B5267E/090909?text=Weekend+Warrior+Pass'" />
@@ -814,7 +832,7 @@
                 <div class="lg:flex lg:items-center lg:justify-between">
                     
                     <div class="lg:w-1/2 lg:pr-6 mb-10 lg:mb-0">
-                        <img src="/images/assets/homeasset01.webp" 
+                        <img src="images/assets/homeasset01.webp" 
                             alt="Neon-lit laser tag arena with blue and red lights" 
                             class="rounded-xl shadow-glow-purple shadow-xl w-full"
                             onerror="this.onerror=null; this.src='https://placehold.co/800x600/21A9FC/090909?text=Fun+Friday+Laser+Tag'" />
@@ -900,7 +918,7 @@
         <section id="gift-cards-section" class="py-16 md:py-24 relative overflow-hidden bg-arena-deep-purple">
             <div class="absolute inset-0 pointer-events-none z-0">
                 <div class="w-full h-full opacity-[0.10]" 
-                     style="background-image: url('/images/assets/gcbg.webp'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                     style="background-image: url('images/assets/gcbg.webp'); background-position: center; background-repeat: no-repeat; background-size: cover;">
                 </div>
             </div>
 
@@ -926,35 +944,35 @@
         <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
             
             <div class="col-span-2 row-span-2 rounded-3xl overflow-hidden border border-arena-white/10 relative h-64 md:h-auto">
-                <img src="/images/slide/02.png" 
+                <img src="images/slide/02.png" 
                      alt="Gallery Image" 
                      class="w-full h-full object-cover" 
                      onerror="this.onerror=null; this.src='https://placehold.co/800x800/320775/21A9FC?text=Image+1'"/>
             </div>
 
             <div class="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-arena-white/10 relative h-32 md:h-auto">
-                <img src="/images/slide/01.png" 
+                <img src="images/slide/01.png" 
                      alt="Gallery Image" 
                      class="w-full h-full object-cover" 
                      onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/5ede58?text=Image+2'"/>
             </div>
 
             <div class="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-arena-white/10 relative h-32 md:h-auto">
-                <img src="/images/slide/03.png" 
+                <img src="images/slide/03.png" 
                      alt="Gallery Image" 
                      class="w-full h-full object-cover" 
                      onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/990099?text=Image+3'"/>
             </div>
 
             <div class="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-arena-white/10 relative h-32 md:h-auto">
-                <img src="/images/slide/04.png" 
+                <img src="images/slide/04.png" 
                      alt="Gallery Image" 
                      class="w-full h-full object-cover" 
                      onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/edf763?text=Image+4'"/>
             </div>
 
             <div class="col-span-1 row-span-1 rounded-3xl overflow-hidden border border-arena-white/10 relative h-32 md:h-auto">
-                <img src="/images/slide/05.png" 
+                <img src="images/slide/05.png" 
                      alt="Gallery Image" 
                      class="w-full h-full object-cover" 
                      onerror="this.onerror=null; this.src='https://placehold.co/400x400/320775/be95ff?text=Image+5'"/>
@@ -1302,10 +1320,10 @@
             const typingIndicator = document.getElementById('typing-indicator');
             
             const conversation = [
-                { role: 1, text: "👋👋! Are you guys free this Friday? Wanna hit The Arena? There's a deal on", style: 'sent', name: 'Marcus', pic: '/images/ui/marcus.svg' }, 
-                { role: 0, text: "Yup!", style: 'received', name: 'Alex', pic: '/images/ui/alex.svg' }, 
-                { role: 0, text: "Sounds fun!", style: 'received-2', name: 'Darren', pic: '/images/ui/darren.svg' }, 
-                { role: 0, text: "Duh!", style: 'received-3', name: 'Priya', pic: '/images/ui/priya.svg' } 
+                { role: 1, text: "👋👋! Are you guys free this Friday? Wanna hit The Arena? There's a deal on", style: 'sent', name: 'Marcus', pic: 'images/ui/marcus.svg' }, 
+                { role: 0, text: "Yup!", style: 'received', name: 'Alex', pic: 'images/ui/alex.svg' }, 
+                { role: 0, text: "Sounds fun!", style: 'received-2', name: 'Darren', pic: 'images/ui/darren.svg' }, 
+                { role: 0, text: "Duh!", style: 'received-3', name: 'Priya', pic: 'images/ui/priya.svg' } 
             ];
 
             function addMessage(role, text, style, name, pic) {
@@ -1462,13 +1480,15 @@
             };
 
             const daysMap = [
-                { id: 'card-0', offset: 0, key: 'sunday' },          
-                { id: 'card-1', offset: [1, 2], key: 'montuesday' },    
-                { id: 'card-2', offset: 3, key: 'wednesday' },          
-                { id: 'card-3', offset: 4, key: 'thursday' },          
-                { id: 'card-4', offset: 5, key: 'friday' },          
-                { id: 'card-5', offset: 6, key: 'saturday' }           
+                { id: 'card-0', offset: 0, key: 'sunday', label: 'Sunday' },          
+                { id: 'card-1', offset: [1, 2], key: 'montuesday', label: 'Mon/Tues' },    
+                { id: 'card-2', offset: 3, key: 'wednesday', label: 'Wednesday' },          
+                { id: 'card-3', offset: 4, key: 'thursday', label: 'Thursday' },          
+                { id: 'card-4', offset: 5, key: 'friday', label: 'Friday' },          
+                { id: 'card-5', offset: 6, key: 'saturday', label: 'Saturday' }           
             ];
+
+            const mobileTodayEl = document.getElementById('mobile-today-hours-text');
 
             daysMap.forEach(config => {
                 const card = document.getElementById(config.id);
@@ -1485,34 +1505,21 @@
                     const d1 = new Date(startOfWeek);
                     d1.setDate(startOfWeek.getDate() + config.offset[0]);
                     const d1Key = formatMonthDay(d1);
-                    
                     const d2 = new Date(startOfWeek);
                     d2.setDate(startOfWeek.getDate() + config.offset[1]);
                     const d2Key = formatMonthDay(d2);
 
                     dateStr = `${getOrdinal(d1.getDate())} + ${getOrdinal(d2.getDate())}`;
-                    
-                    if (currentDay === config.offset[0] || currentDay === config.offset[1]) {
-                        isToday = true;
-                    }
-
+                    if (currentDay === config.offset[0] || currentDay === config.offset[1]) isToday = true;
                     if(scheduleConfig.holidays[d1Key]) displayHours = scheduleConfig.holidays[d1Key];
                     if(scheduleConfig.holidays[d2Key]) displayHours = scheduleConfig.holidays[d2Key]; 
-
                 } else {
                     const d = new Date(startOfWeek);
                     d.setDate(startOfWeek.getDate() + config.offset);
                     const dKey = formatMonthDay(d);
-
                     dateStr = getOrdinal(d.getDate());
-                    
-                    if (currentDay === config.offset) {
-                        isToday = true;
-                    }
-
-                    if (scheduleConfig.holidays[dKey]) {
-                        displayHours = scheduleConfig.holidays[dKey];
-                    }
+                    if (currentDay === config.offset) isToday = true;
+                    if (scheduleConfig.holidays[dKey]) displayHours = scheduleConfig.holidays[dKey];
                 }
 
                 dateEl.textContent = dateStr;
@@ -1529,6 +1536,9 @@
 
                 if (isToday) {
                     card.classList.add('is-today');
+                    if (mobileTodayEl) {
+                        mobileTodayEl.innerHTML = displayHours;
+                    }
                 } else {
                     card.classList.remove('is-today');
                 }
