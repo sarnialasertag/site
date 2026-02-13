@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>The Arena - Sarnia Laser Tag</title>
     <meta name="description" content="Sarnia's premier entertainment destination featuring Laser Tag, Rock Climbing, and Mini Golf. Book your group event or check out our weekly specials.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,7 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            min-height: 100dvh;
         }
         
         h1, h2, .font-bricolage {
@@ -50,10 +51,20 @@
         /* Drawer Styles */
         #mobile-nav-overlay {
             transition: visibility 0.3s, opacity 0.3s;
+            height: 100dvh;
         }
         
         #mobile-nav-drawer {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100dvh;
+            padding-top: env(safe-area-inset-top, 24px);
+            padding-bottom: env(safe-area-inset-bottom, 24px);
+        }
+
+        /* Fixed Button Placement */
+        .floating-action-button {
+            bottom: calc(1.5rem + env(safe-area-inset-bottom));
+            right: 1.5rem;
         }
 
         .email-form-input {
@@ -391,49 +402,56 @@
                 <img src="/images/assets/logo/logo_tagline.svg" alt="The Arena - Laser Tag, Rock Climbing, Mini Golf" class="h-12 w-auto">
             </a>
 
-            <nav class="hidden md:flex space-x-8 text-sm font-medium items-center" aria-label="Main Navigation">
-                <a href="#pricing" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Pricing</a>
+            <nav class="hidden md:flex space-x-6 text-xs lg:text-sm font-medium items-center" aria-label="Main Navigation">
                 <a href="#services" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Activities</a>
+                <a href="#pricing" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Pricing</a>
+                <a href="#all-inclusive" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Book Online</a>
                 <a href="#weekend-warrior-deal" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Specials</a>
-                <a href="#gift-cards" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Gift Cards</a>
-                <a href="#projects" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Projects</a>
-                <a href="#contact" class="btn-primary bg-arena-purple text-arena-white hover:bg-arena-deep-purple !px-6 !py-2">Get Started</a>
+                <a href="#faq" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">FAQ</a>
+                <a href="#hours" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Contact Us</a>
+                <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="btn-primary bg-arena-purple text-arena-white hover:bg-arena-deep-purple !px-4 !py-1.5">Gift Cards</a>
             </nav>
         </div>
     </header>
 
     <!-- Floating Mobile Menu Button -->
-    <button id="floating-menu-button" class="md:hidden fixed bottom-6 right-6 z-[60] w-14 h-14 bg-arena-green text-arena-black rounded-full shadow-lg flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-arena-green/30 active:scale-95 transition-transform" aria-label="Open Menu">
+    <button id="floating-menu-button" class="md:hidden fixed z-[60] w-14 h-14 bg-arena-green text-arena-black rounded-full shadow-lg flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-arena-green/30 active:scale-95 transition-all floating-action-button" aria-label="Open Menu">
         <i class="ph ph-list ph-bold text-3xl"></i>
     </button>
 
     <!-- Side Navigation Drawer -->
     <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 z-[100] bg-arena-black/70 backdrop-blur-sm opacity-0 invisible transition-all duration-300">
-        <div id="mobile-nav-drawer" class="absolute top-0 right-0 w-4/5 max-w-xs h-full bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6">
-            <div class="flex justify-between items-center mb-10">
+        <div id="mobile-nav-drawer" class="absolute top-0 right-0 w-4/5 max-w-xs bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6">
+            <div class="flex justify-start items-center mb-8">
                 <img src="/images/assets/logo/logo_tagline.svg" alt="The Arena" class="h-8 w-auto">
-                <button id="close-menu-button" class="p-2 text-arena-lavender hover:text-arena-white focus:outline-none">
-                    <i class="ph ph-x ph-bold text-3xl"></i>
-                </button>
             </div>
             
-            <nav class="flex flex-col space-y-4 text-center" aria-label="Mobile Navigation">
-                <a href="#pricing" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Pricing</a>
-                <a href="#services" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Activities</a>
-                <a href="#weekend-warrior-deal" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Specials</a>
-                <a href="#gift-cards" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Gift Cards</a>
-                <a href="#projects" class="mobile-nav-link text-xl font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Projects</a>
-                <a href="#contact" class="mobile-nav-link text-xl font-bold py-4 bg-arena-green text-arena-black hover:bg-arena-green-dark rounded-xl mt-6 transition-all">Get Started</a>
+            <nav class="flex flex-col space-y-2 text-center overflow-y-auto" aria-label="Mobile Navigation">
+                <a href="#services" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Activities</a>
+                <a href="#pricing" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Pricing</a>
+                <a href="#all-inclusive" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Book Online</a>
+                <a href="#weekend-warrior-deal" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Specials & Promotions</a>
+                <a href="#faq" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">FAQ</a>
+                <a href="#hours" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Contact Us</a>
+                <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-lg font-bold py-3 text-arena-lavender hover:text-arena-white hover:bg-white/5 rounded-xl transition-all">Gift Cards</a>
             </nav>
 
-            <div class="mt-auto pb-6 text-center">
-                <p class="text-arena-lavender/60 text-sm">Need help?</p>
-                <a href="tel:5195421001" class="text-arena-white font-bold text-lg">519-542-1001</a>
+            <div class="mt-auto pt-8 border-t border-white/10 text-center">
+                <p class="text-arena-lavender/60 text-sm mb-4 italic">Need help?</p>
+                <a href="tel:5195421001" class="w-full flex items-center justify-center gap-3 py-4 bg-arena-blue text-white rounded-2xl font-bold text-lg hover:bg-arena-blue-dark transition-colors">
+                    <i class="ph ph-phone-call text-2xl"></i>
+                    Call Us Now
+                </a>
             </div>
+
+            <!-- Close Button mirroring Open Button location -->
+            <button id="close-menu-button" class="absolute w-14 h-14 bg-arena-magenta text-white rounded-full shadow-lg flex items-center justify-center focus:outline-none active:scale-95 transition-all floating-action-button" aria-label="Close Menu">
+                <i class="ph ph-x ph-bold text-3xl"></i>
+            </button>
         </div>
     </div>
 
-    <main class="pt-20"> <!-- Added padding to account for fixed header -->
+    <main class="pt-20">
         <section class="relative overflow-hidden pt-24 pb-24 md:pt-20 md:pb-48 bg-arena-dark-purple isolate">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-arena-purple/30 via-arena-dark-purple to-arena-dark-purple pointer-events-none -z-10"></div>
 
@@ -474,7 +492,7 @@
                 </p>
                 
                 <div class="relative z-20">
-                    <a href="#weekend-warrior-deal" class="btn-primary bg-arena-yellow text-arena-black hover:bg-arena-yellow-dark text-lg px-10 py-4 transform hover:scale-105 transition-all duration-200">
+                    <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="btn-primary bg-arena-yellow text-arena-black hover:bg-arena-yellow-dark text-lg px-10 py-4 transform hover:scale-105 transition-all duration-200">
                         <i class="ph-duotone ph-gift text-2xl mr-3"></i>
                         Purchase E-Gift Card
                     </a>
@@ -662,7 +680,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-5xl font-bold text-center mb-4 text-arena-white border-t border-arena-lavender/50 pt-12 font-bricolage">All-Inclusive Group Packages</h3>
+                <h3 id="all-inclusive" class="text-5xl font-bold text-center mb-4 text-arena-white border-t border-arena-lavender/50 pt-12 font-bricolage">All-Inclusive Group Packages</h3>
                 <p class="text-lg text-arena-light-purple text-center max-w-3xl mx-auto mb-16">
                     Book online! All packages below require a minimum of 6 people.
                 </p>
@@ -876,7 +894,7 @@
             </div>
         </section>
 
-        <section id="gift-cards" class="py-16 md:py-24 relative overflow-hidden bg-arena-deep-purple">
+        <section id="gift-cards-section" class="py-16 md:py-24 relative overflow-hidden bg-arena-deep-purple">
             <div class="absolute inset-0 pointer-events-none z-0">
                 <div class="w-full h-full opacity-[0.10]" 
                      style="background-image: url('/images/assets/gcbg.webp'); background-position: center; background-repeat: no-repeat; background-size: cover;">
@@ -1042,7 +1060,7 @@
 
         <section id="hours" class="py-16 bg-arena-black border-t border-arena-deep-purple">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-5xl font-bold text-center mb-12 text-arena-white font-bricolage">Business Hours</h2>
+                <h2 class="text-5xl font-bold text-center mb-12 text-arena-white font-bricolage">Business Hours & Location</h2>
                 
                 <div class="grid grid-cols-2 lg:grid-cols-6 gap-6" id="hours-grid">
                     <div class="hours-card bg-arena-dark-gray/30 border border-arena-deep-purple/50 rounded-2xl overflow-hidden group" id="card-0">
@@ -1236,7 +1254,7 @@
 
     </main>
 
-    <footer class="bg-arena-dark-purple border-t border-arena-purple/50 pt-16 pb-10">
+    <footer class="bg-arena-dark-purple border-t border-arena-purple/50 pt-16 pb-36 md:pb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="flex justify-center space-x-6 mb-8">
                 <a href="https://www.facebook.com/thearenasarnia/" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-colors">
@@ -1530,12 +1548,14 @@
                 menuOverlay.classList.remove('invisible');
                 menuOverlay.classList.add('opacity-100');
                 menuDrawer.classList.remove('translate-x-full');
+                document.documentElement.style.overflow = 'hidden';
                 document.body.style.overflow = 'hidden';
             }
 
             function closeMenu() {
                 menuOverlay.classList.remove('opacity-100');
                 menuDrawer.classList.add('translate-x-full');
+                document.documentElement.style.overflow = '';
                 document.body.style.overflow = '';
                 setTimeout(() => {
                     menuOverlay.classList.add('invisible');
@@ -1560,14 +1580,11 @@
             window.addEventListener('scroll', () => {
                 const currentScrollY = window.scrollY;
                 
-                // Don't trigger if menu is open
                 if (document.body.style.overflow === 'hidden') return;
 
                 if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                    // Scrolling down - hide header
                     header.style.transform = 'translateY(-100%)';
                 } else {
-                    // Scrolling up - show header
                     header.style.transform = 'translateY(0)';
                 }
                 lastScrollY = currentScrollY;
