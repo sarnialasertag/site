@@ -15,7 +15,6 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            /* Support for Liquid Glass and Dynamic Viewports */
             min-height: 100dvh;
         }
         
@@ -60,12 +59,9 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100dvh;
             width: 100vw;
-            padding-top: env(safe-area-inset-top, 24px);
-            /* Padding bottom to clear iOS 26 Liquid Glass web bars */
-            padding-bottom: calc(60px + env(safe-area-inset-bottom, 24px));
         }
 
-        /* Consistent Floating Button Placement */
+        /* Consistent Floating Button Placement relative to safe area */
         .floating-action-button {
             bottom: calc(1.5rem + env(safe-area-inset-bottom, 16px));
             right: 1.5rem;
@@ -400,7 +396,7 @@
 </head>
 <body class="bg-arena-black text-arena-white">
 
-    <!-- Header: Persistent Sticky on desktop, absolute (stays at top) on mobile -->
+    <!-- Header: Sticky persistent on desktop, Absolute static on mobile -->
     <header id="main-header" class="absolute md:fixed top-0 left-0 right-0 z-50 bg-arena-dark-purple bg-opacity-95 backdrop-blur-sm shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" class="block" aria-label="The Arena Home">
@@ -420,37 +416,35 @@
     </header>
 
     <!-- Floating Mobile Menu Button -->
-    <button id="floating-menu-button" class="md:hidden fixed z-[60] w-14 h-14 bg-arena-green text-arena-black rounded-full shadow-2xl flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-arena-green/30 active:scale-95 transition-all floating-action-button" aria-label="Open Menu">
+    <button id="floating-menu-button" class="md:hidden fixed z-[60] w-14 h-14 bg-arena-green text-arena-black rounded-full shadow-xl flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-arena-green/30 active:scale-95 transition-all floating-action-button" aria-label="Open Menu">
         <i class="ph ph-list ph-bold text-3xl"></i>
     </button>
 
-    <!-- Side Navigation Drawer: Full Screen centered layout -->
+    <!-- Side Navigation Drawer: Full Screen layout -->
     <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 z-[100] bg-arena-black opacity-0 invisible transition-all duration-300">
-        <div id="mobile-nav-drawer" class="absolute inset-0 bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6 overflow-hidden">
+        <div id="mobile-nav-drawer" class="absolute inset-0 w-full bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col overflow-y-auto">
             
-            <!-- Vertically and Horizontally Centered Content Wrapper -->
-            <div class="flex-grow flex flex-col justify-center items-center w-full max-w-md mx-auto space-y-8">
+            <!-- Content Wrapper: Top Aligned with padding for vertical space -->
+            <div class="flex flex-col items-center w-full px-6 pt-16 pb-48">
                 
                 <!-- Main Nav Links -->
-                <nav class="flex flex-col items-center w-full" aria-label="Mobile Navigation">
+                <nav class="flex flex-col items-center w-full max-w-md mx-auto space-y-4" aria-label="Mobile Navigation">
                     <!-- 2 Column Grid for top 4 items -->
-                    <div class="grid grid-cols-2 gap-3 w-full mb-3">
-                        <a href="#services" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Activities</a>
-                        <a href="#pricing" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Pricing</a>
-                        <a href="#all-inclusive" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center text-center">Book Online</a>
-                        <a href="#weekend-warrior-deal" class="mobile-nav-link text-sm font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center leading-tight">Specials &<br>Promotions</a>
+                    <div class="grid grid-cols-2 gap-3 w-full">
+                        <a href="#services" class="mobile-nav-link text-lg font-bold py-5 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Activities</a>
+                        <a href="#pricing" class="mobile-nav-link text-lg font-bold py-5 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Pricing</a>
+                        <a href="#all-inclusive" class="mobile-nav-link text-lg font-bold py-5 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Book Online</a>
+                        <a href="#weekend-warrior-deal" class="mobile-nav-link text-sm font-bold py-5 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center leading-tight">Specials &<br>Promotions</a>
                     </div>
                     
-                    <!-- Single Column for remaining items - Styled as boxes for consistency -->
-                    <div class="flex flex-col gap-3 w-full">
-                        <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Gift Cards</a>
-                        <a href="#faq" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">FAQ</a>
-                        <a href="#hours" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center">Contact Us</a>
-                    </div>
+                    <!-- Single Column items - Styled same as boxes for consistency -->
+                    <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="mobile-nav-link w-full text-xl font-bold py-5 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center">Gift Cards</a>
+                    <a href="#faq" class="mobile-nav-link w-full text-xl font-bold py-5 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center">FAQ</a>
+                    <a href="#hours" class="mobile-nav-link w-full text-xl font-bold py-5 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center">Contact Us</a>
                 </nav>
 
-                <!-- Footer Context (Help, Hours, Socials) -->
-                <div class="text-center w-full space-y-8">
+                <!-- Footer Section (Help, Hours, Socials) -->
+                <div class="text-center w-full max-w-md mx-auto space-y-10 mt-12">
                     <!-- Call Section -->
                     <div class="space-y-4">
                         <p class="text-arena-lavender/60 text-sm italic">Need help?</p>
@@ -460,25 +454,25 @@
                         </a>
                     </div>
 
-                    <!-- Current Day Business Hours - Arena Green Styled Rectangle -->
-                    <div id="mobile-current-hours" class="bg-arena-green/5 border border-arena-green/30 rounded-2xl p-4 text-arena-green">
-                        <p class="text-xs uppercase tracking-widest opacity-70 mb-1">Today's Hours</p>
-                        <div id="mobile-today-hours-text" class="text-lg font-bold">Loading...</div>
+                    <!-- Current Day Business Hours - Distinct Green Styling -->
+                    <div id="mobile-current-hours" class="bg-arena-green/10 border border-arena-green/40 rounded-3xl p-6 text-arena-green">
+                        <p class="text-xs uppercase tracking-widest opacity-80 mb-2 font-bold">Today's Hours</p>
+                        <div id="mobile-today-hours-text" class="text-2xl font-extrabold text-arena-white">Loading...</div>
                     </div>
 
                     <!-- Social Links -->
-                    <div class="flex justify-center space-x-10">
-                        <a href="https://www.facebook.com/thearenasarnia/" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110">
+                    <div class="flex justify-center space-x-12 pb-10">
+                        <a href="https://www.facebook.com/thearenasarnia/" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110 active:scale-95">
                             <i class="ph-duotone ph-facebook-logo text-5xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/thearenasarnia" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110">
+                        <a href="https://www.instagram.com/thearenasarnia" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110 active:scale-95">
                             <i class="ph-duotone ph-instagram-logo text-5xl"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Close Button mirrors Open Button location exactly -->
+            <!-- Close Button mirrors Open Button location exactly and stays fixed on the screen -->
             <button id="close-menu-button" class="fixed w-14 h-14 bg-arena-magenta text-white rounded-full shadow-2xl flex items-center justify-center focus:outline-none active:scale-95 transition-all floating-action-button z-[110]" aria-label="Close Menu">
                 <i class="ph ph-x ph-bold text-3xl"></i>
             </button>
@@ -1573,6 +1567,7 @@
                 menuOverlay.classList.remove('invisible');
                 menuOverlay.classList.add('opacity-100');
                 menuDrawer.classList.remove('translate-x-full');
+                // Freeze background scroll
                 document.documentElement.style.overflow = 'hidden';
                 document.body.style.overflow = 'hidden';
             }
@@ -1580,6 +1575,7 @@
             function closeMenu() {
                 menuOverlay.classList.remove('opacity-100');
                 menuDrawer.classList.add('translate-x-full');
+                // Restore background scroll
                 document.documentElement.style.overflow = '';
                 document.body.style.overflow = '';
                 setTimeout(() => {
