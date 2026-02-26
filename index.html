@@ -18,6 +18,11 @@
             min-height: 100dvh;
         }
         
+        /* Fix for sticky header overlap on anchor links */
+        [id] {
+            scroll-margin-top: 80px;
+        }
+
         h1, h2, .font-bricolage {
             font-family: 'Bricolage Grotesque', sans-serif;
             font-weight: 800;
@@ -320,6 +325,10 @@
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(0, -12px) scale(0.9); }
         }
+        @keyframes sparkle-float-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(0, -15px) scale(1.1); }
+        }
         @keyframes sparkle-pulse {
             0%, 100% { opacity: 0.8; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
@@ -329,7 +338,10 @@
             animation: sparkle-float-1 7s ease-in-out infinite;
         }
         .animate-sparkle-2 {
-            animation: sparkle-float-2 7s ease-in-out infinite;
+            animation: sparkle-float-2 6s ease-in-out infinite;
+        }
+        .animate-sparkle-3 {
+            animation: sparkle-float-3 9s ease-in-out infinite;
         }
         .animate-sparkle-pulse {
             animation: sparkle-pulse 3s ease-in-out infinite;
@@ -489,14 +501,23 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
                 
                 <!-- Vivid Sparkle Icons Clustering behind image -->
-                <div class="absolute top-[5%] left-[5%] md:top-[10%] md:left-[25%] pointer-events-none z-10 animate-sparkle-1">
-                    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-arena-yellow drop-shadow-[0_0_20px_rgba(237,247,99,0.8)] animate-sparkle-pulse">
+                <!-- Sparkle 1: Yellow -->
+                <div class="absolute top-[5%] left-[5%] md:top-[10%] md:left-[22%] pointer-events-none z-10 animate-sparkle-1">
+                    <svg width="160" height="160" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-arena-yellow drop-shadow-[0_0_20px_rgba(237,247,99,0.8)] animate-sparkle-pulse" style="animation-delay: 0.2s;">
                         <path d="M100 0 C105 70 130 95 200 100 C130 105 105 130 100 200 C95 130 70 105 0 100 C70 95 95 70 100 0 Z" fill="currentColor"/>
                     </svg>
                 </div>
 
-                <div class="absolute top-[10%] right-[5%] md:top-[15%] md:right-[25%] pointer-events-none z-10 animate-sparkle-2">
-                    <svg width="160" height="160" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-arena-pale-magenta drop-shadow-[0_0_20px_rgba(181,38,126,0.8)] animate-sparkle-pulse">
+                <!-- Sparkle 2: Magenta -->
+                <div class="absolute top-[25%] right-[5%] md:top-[32%] md:right-[20%] pointer-events-none z-10 animate-sparkle-2">
+                    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-arena-pale-magenta drop-shadow-[0_0_20px_rgba(181,38,126,0.8)] animate-sparkle-pulse" style="animation-delay: 1.5s;">
+                        <path d="M100 0 C105 70 130 95 200 100 C130 105 105 130 100 200 C95 130 70 105 0 100 C70 95 95 70 100 0 Z" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <!-- NEW Sparkle 3: Teal/Blue -->
+                <div class="absolute top-[0%] right-[10%] md:top-[0%] md:right-[35%] pointer-events-none z-10 animate-sparkle-3">
+                    <svg width="90" height="90" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-arena-teal drop-shadow-[0_0_20px_rgba(108,247,243,0.8)] animate-sparkle-pulse" style="animation-delay: 0.8s;">
                         <path d="M100 0 C105 70 130 95 200 100 C130 105 105 130 100 200 C95 130 70 105 0 100 C70 95 95 70 100 0 Z" fill="currentColor"/>
                     </svg>
                 </div>
@@ -1318,322 +1339,6 @@
         </div>
     </footer>
 
-    <script>
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        // Notification Toast Handler
-        function showToast(message) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'toast-message';
-            toast.textContent = message;
-            container.appendChild(toast);
-
-            // Trigger reflow for animation
-            void toast.offsetWidth;
-            toast.classList.add('visible');
-
-            setTimeout(() => {
-                toast.classList.remove('visible');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // Smart Sharing Logic
-        async function shareDeal(title, sectionId) {
-            const dealUrl = `${window.location.origin}${window.location.pathname}#${sectionId}`;
-            
-            // Check if mobile and share sheet supported
-            if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                try {
-                    await navigator.share({
-                        title: `The Arena Deal: ${title}`,
-                        url: dealUrl
-                    });
-                } catch (err) {
-                    // Silently fail if user cancels
-                }
-            } else {
-                // Desktop fallback: copy to clipboard
-                const el = document.createElement('textarea');
-                el.value = dealUrl;
-                document.body.appendChild(el);
-                el.select();
-                document.execCommand('copy');
-                document.body.removeChild(el);
-                showToast('Deal copied to clipboard!');
-            }
-        }
-        
-        async function phoneAnimation() {
-            const feed = document.getElementById('message-feed');
-            const typingIndicator = document.getElementById('typing-indicator');
-            
-            const conversation = [
-                { role: 1, text: "👋👋! Are you guys free this Friday? Wanna hit The Arena? There's a deal on", style: 'sent', name: 'Marcus', pic: 'images/ui/marcus.svg' }, 
-                { role: 0, text: "Yup!", style: 'received', name: 'Alex', pic: 'images/ui/alex.svg' }, 
-                { role: 0, text: "Sounds fun!", style: 'received-2', name: 'Darren', pic: 'images/ui/darren.svg' }, 
-                { role: 0, text: "Duh!", style: 'received-3', name: 'Priya', pic: 'images/ui/priya.svg' } 
-            ];
-
-            function addMessage(role, text, style, name, pic) {
-                const messageContainer = document.createElement('div');
-                messageContainer.classList.add('message-container', style);
-
-                const avatarContainer = document.createElement('div');
-                avatarContainer.classList.add('avatar-container');
-                const profilePic = document.createElement('img');
-                profilePic.src = pic;
-                profilePic.alt = name;
-                profilePic.onerror = function() {
-                    this.onerror=null; 
-                    this.src='https://placehold.co/36x36/333/fff?text='+name.charAt(0);
-                };
-                avatarContainer.appendChild(profilePic);
-
-                const contentWrapper = document.createElement('div');
-                contentWrapper.classList.add('message-content');
-
-                const senderName = document.createElement('span');
-                senderName.textContent = name;
-                senderName.classList.add('sender-name');
-                
-                const bubble = document.createElement('div');
-                bubble.classList.add('message-bubble', style);
-                bubble.textContent = text;
-
-                contentWrapper.appendChild(senderName);
-                contentWrapper.appendChild(bubble);
-
-                if (role === 1) { 
-                    messageContainer.appendChild(avatarContainer); 
-                    messageContainer.appendChild(contentWrapper); 
-                } else { 
-                    messageContainer.appendChild(avatarContainer);
-                    messageContainer.appendChild(contentWrapper);
-                }
-                
-                feed.insertBefore(messageContainer, typingIndicator); 
-                
-                setTimeout(() => {
-                    messageContainer.classList.add('visible');
-                    feed.scrollTop = feed.scrollHeight;
-                }, 10);
-            }
-
-            function showTyping(show) {
-                if (show) {
-                    typingIndicator.classList.add('visible');
-                    typingIndicator.style.opacity = '1';
-                    feed.scrollTop = feed.scrollHeight;
-                } else {
-                    typingIndicator.classList.remove('visible');
-                    typingIndicator.style.opacity = '0';
-                }
-            }
-            
-            await sleep(500); 
-            feed.querySelectorAll('.message-container').forEach(b => b.remove()); 
-            showTyping(false);
-            
-            const firstMsg = conversation[0];
-            addMessage(firstMsg.role, firstMsg.text, firstMsg.style, firstMsg.name, firstMsg.pic);
-            
-            for (let i = 1; i < conversation.length; i++) {
-                const msg = conversation[i];
-                await sleep(1500); 
-                showTyping(true);
-                await sleep(1000); 
-                showTyping(false);
-                addMessage(msg.role, msg.text, msg.style, msg.name, msg.pic);
-            }
-            
-            await sleep(6000);
-            phoneAnimation(); 
-        }
-
-        function updateBusinessHours() {
-            const scheduleConfig = {
-                "default_hours": {
-                    "sunday": "11AM - 7PM",
-                    "montuesday": "Closed 🚫", 
-                    "wednesday": "4PM - 8PM",
-                    "thursday": "4PM - 8PM",
-                    "friday": "4PM - 10PM",
-                    "saturday": "12PM - 10PM"
-                },
-                "holidays": {
-                    "10-31": "Closed 🎃",
-                    "12-25": "Closed 🎄",
-                    "12-26": "Closed 🎁",
-                    "12-27": "12PM - 10PM<br><span class='text-sm opacity-80'>(Holiday Hours)</span>",
-                    "01-01": "Closed 🌟",
-                    "01-02": "12PM - 6PM",
-                    "01-03": "12PM - 10PM<br><span class='text-sm opacity-80'>(Holiday Hours)</span>",
-                    "04-20": "Closed 🐣",
-                    "07-01": "Closed 🍁"
-                }
-            };
-
-            const now = new Date();
-            const currentDay = now.getDay(); 
-            const startOfWeek = new Date(now);
-            startOfWeek.setDate(now.getDate() - currentDay);
-            
-            const getOrdinal = (n) => {
-                const s = ["th", "st", "nd", "rd"];
-                const v = n % 100;
-                return n + (s[(v - 20) % 10] || s[v] || s[0]);
-            };
-
-            const formatMonthDay = (date) => {
-                let month = '' + (date.getMonth() + 1);
-                let day = '' + date.getDate();
-                if (month.length < 2) month = '0' + month;
-                if (day.length < 2) day = '0' + day;
-                return [month, day].join('-');
-            };
-
-            const daysMap = [
-                { id: 'card-0', offset: 0, key: 'sunday', label: 'Sunday' },          
-                { id: 'card-1', offset: [1, 2], key: 'montuesday', label: 'Mon/Tues' },    
-                { id: 'card-2', offset: 3, key: 'wednesday', label: 'Wednesday' },          
-                { id: 'card-3', offset: 4, key: 'thursday', label: 'Thursday' },          
-                { id: 'card-4', offset: 5, key: 'friday', label: 'Friday' },          
-                { id: 'card-5', offset: 6, key: 'saturday', label: 'Saturday' }           
-            ];
-
-            const mobileTodayEl = document.getElementById('mobile-today-hours-text');
-
-            daysMap.forEach(config => {
-                const card = document.getElementById(config.id);
-                if (!card) return; 
-                
-                const dateEl = card.querySelector('.day-date');
-                const hoursEl = card.querySelector('.hour-text');
-                
-                let dateStr = "";
-                let isToday = false;
-                let displayHours = scheduleConfig.default_hours[config.key]; 
-
-                if (Array.isArray(config.offset)) {
-                    const d1 = new Date(startOfWeek);
-                    d1.setDate(startOfWeek.getDate() + config.offset[0]);
-                    const d1Key = formatMonthDay(d1);
-                    const d2 = new Date(startOfWeek);
-                    d2.setDate(startOfWeek.getDate() + config.offset[1]);
-                    const d2Key = formatMonthDay(d2);
-
-                    dateStr = `${getOrdinal(d1.getDate())} + ${getOrdinal(d2.getDate())}`;
-                    if (currentDay === config.offset[0] || currentDay === config.offset[1]) isToday = true;
-                    if(scheduleConfig.holidays[d1Key]) displayHours = scheduleConfig.holidays[d1Key];
-                    if(scheduleConfig.holidays[d2Key]) displayHours = scheduleConfig.holidays[d2Key]; 
-                } else {
-                    const d = new Date(startOfWeek);
-                    d.setDate(startOfWeek.getDate() + config.offset);
-                    const dKey = formatMonthDay(d);
-                    dateStr = getOrdinal(d.getDate());
-                    if (currentDay === config.offset) isToday = true;
-                    if (scheduleConfig.holidays[dKey]) displayHours = scheduleConfig.holidays[dKey];
-                }
-
-                if (dateEl) dateEl.textContent = dateStr;
-                
-                let htmlOutput = displayHours;
-                if (displayHours.includes("Closed") || displayHours.includes("🚫")) {
-                      if (displayHours === "Closed 🚫") {
-                          htmlOutput = `<div class="flex flex-row items-center justify-center gap-2"><span>Closed</span><i class="ph ph-prohibit text-arena-magenta text-xl"></i></div>`;
-                      }
-                }
-
-                if (hoursEl) hoursEl.innerHTML = htmlOutput;
-
-                if (isToday) {
-                    card.classList.add('is-today');
-                    if (mobileTodayEl) {
-                        mobileTodayEl.innerHTML = htmlOutput;
-                    }
-                } else {
-                    card.classList.remove('is-today');
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateBusinessHours(); 
-
-            // Mobile Menu Logic
-            const headerMenuButton = document.getElementById('header-menu-button');
-            const closeButton = document.getElementById('close-menu-button');
-            const menuOverlay = document.getElementById('mobile-nav-overlay');
-            const menuDrawer = document.getElementById('mobile-nav-drawer');
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-            function openMenu() {
-                menuOverlay.classList.remove('invisible');
-                menuOverlay.classList.add('opacity-100');
-                menuDrawer.classList.remove('translate-x-full');
-                document.documentElement.style.overflow = 'hidden';
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeMenu() {
-                menuOverlay.classList.remove('opacity-100');
-                menuDrawer.classList.add('translate-x-full');
-                document.documentElement.style.overflow = '';
-                document.body.style.overflow = '';
-                setTimeout(() => {
-                    menuOverlay.classList.add('invisible');
-                }, 300);
-            }
-
-            headerMenuButton.addEventListener('click', openMenu);
-            closeButton.addEventListener('click', closeMenu);
-            
-            menuOverlay.addEventListener('click', (e) => {
-                if (e.target === menuOverlay) closeMenu();
-            });
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // Intersection Observer for Phone Animation
-            const observerOptions = {
-                threshold: 0.3
-            };
-
-            const animationObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        phoneAnimation();
-                        animationObserver.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const animationTarget = document.getElementById('innovation-focus');
-            if (animationTarget) {
-                animationObserver.observe(animationTarget);
-            }
-
-            // Project Scroll buttons
-            const scrollContainer = document.getElementById('project-scroll-container');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-
-            if (prevBtn && nextBtn && scrollContainer) {
-                prevBtn.addEventListener('click', () => {
-                    scrollContainer.scrollBy({ left: -320, behavior: 'smooth' });
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
-                });
-            }
-        });
-    </script>
+	<script type="module" src="js/main.js"></script>
 </body>
 </html>
