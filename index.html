@@ -88,13 +88,11 @@
             padding: 0;
             gap: 12px;
             z-index: 1;
-            height: 380px;
+            height: 100%;
             width: 100%;
             justify-content: flex-start;
             position: relative;
-            overflow-y: scroll; 
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
+            overflow: hidden;
         }
         .message-area::-webkit-scrollbar {
             display: none; 
@@ -920,14 +918,25 @@
                         </button>
                     </div>
                     
-                    <div class="lg:w-5/12 lg:pl-6 relative min-h-[400px] flex items-start justify-center pt-8 mb-8 lg:mb-0">
-                        <div id="message-feed-container" class="w-full max-w-sm mx-auto">
-                            <div id="message-feed" class="message-area">
+                    <div class="lg:w-5/12 lg:pl-6 relative mb-8 lg:mb-0 flex items-center justify-center">
+                        <div class="w-full max-w-sm mx-auto relative">
+                            <!-- Phone Frame -->
+                            <div class="relative rounded-3xl border-[8px] border-gray-600/60 bg-black/50 overflow-hidden" style="aspect-ratio: 9/11;">
+                                <!-- Notch -->
+                                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-4 bg-black rounded-b-xl z-20"></div>
                                 
-                                <div id="typing-indicator" class="typing-indicator">
-                                    <span></span><span></span><span></span>
+                                <!-- Messages Container -->
+                                <div id="message-feed-container" class="w-full h-full pt-5 px-6 overflow-hidden">
+                                    <div id="message-feed" class="message-area">
+                                        <div id="typing-indicator" class="typing-indicator">
+                                            <span></span><span></span><span></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <!-- Fade Gradient Overlay on TOP of device -->
+                            <div class="absolute bottom-0 left-0 right-0 w-full pointer-events-none z-50 rounded-3xl" style="height: 35%; background: linear-gradient(to top, #320775 0%, #320775 15%, rgba(50, 7, 117, 0.7) 40%, transparent 100%);"></div>
                         </div>
                     </div>
                 </div>
