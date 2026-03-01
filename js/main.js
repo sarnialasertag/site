@@ -1,10 +1,13 @@
 import { updateBusinessHours } from './businessHours.js';
 import { phoneAnimation } from './phoneAnimation.js';
 import { initMobileMenu } from './mobileMenu.js';
+import { shareDeal } from './share.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     updateBusinessHours();
     initMobileMenu();
+
+    window.shareDeal = shareDeal;
 
     const animationObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -23,7 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
 
     if (prevBtn && nextBtn && scrollContainer) {
-        prevBtn.addEventListener('click', () => scrollContainer.scrollBy({ left: -320, behavior: 'smooth' }));
-        nextBtn.addEventListener('click', () => scrollContainer.scrollBy({ left: 320, behavior: 'smooth' }));
+        prevBtn.addEventListener('click', () => {
+            scrollContainer.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+        });
     }
 });
