@@ -5,7 +5,7 @@ export async function phoneAnimation() {
     const typingIndicator = document.getElementById('typing-indicator');
 
     const conversation = [
-        { role: 1, text: "👋👋! Are you guys free this Friday? Wanna hit The Arena? There's a deal on", style: 'sent', name: 'Marcus', pic: 'images/ui/marcus.svg' }, 
+        { role: 1, text: "👋👋! Are you guys free this Friday? Wanna hit The Arena? There's a deal for four!", style: 'sent', name: 'Marcus', pic: 'images/ui/marcus.svg' }, 
         { role: 0, text: "Yup!", style: 'received', name: 'Alex', pic: 'images/ui/alex.svg' }, 
         { role: 0, text: "Sounds fun!", style: 'received-2', name: 'Darren', pic: 'images/ui/darren.svg' }, 
         { role: 0, text: "Duh!", style: 'received-3', name: 'Priya', pic: 'images/ui/priya.svg' } 
