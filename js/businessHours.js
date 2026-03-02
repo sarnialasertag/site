@@ -90,6 +90,7 @@ export function updateBusinessHours() {
 
         if (hoursEl) hoursEl.innerHTML = displayHours;
 
+        // Add or remove is-today class
         if (isToday) {
             card.classList.add('is-today');
             if (mobileTodayEl) mobileTodayEl.innerHTML = displayHours;
@@ -97,4 +98,16 @@ export function updateBusinessHours() {
             card.classList.remove('is-today');
         }
     });
+
+    // Fallback for policy pages: update mobile hours if still loading
+    if (mobileTodayEl && mobileTodayEl.textContent === 'Loading...') {
+        const daysMapSimple = ['sunday', 'montuesday', 'montuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        const todayKey = daysMapSimple[currentDay];
+        let displayHours = scheduleConfig.default_hours[todayKey];
+        
+        const dKey = formatMonthDay(now);
+        if (scheduleConfig.holidays[dKey]) displayHours = scheduleConfig.holidays[dKey];
+        
+        mobileTodayEl.innerHTML = displayHours;
+    }
 }

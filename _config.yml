@@ -1,0 +1,11 @@
+title: The Arena - Sarnia Laser Tag
+description: Sarnia's premier entertainment destination featuring Laser Tag, Rock Climbing, and Mini Golf
+url: ""
+baseurl: ""
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock

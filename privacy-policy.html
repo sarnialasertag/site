@@ -1,393 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="The Arena's Privacy Policy - How we handle and protect your personal information.">
-    <title>Privacy Policy - The Arena</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/duotone/style.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            min-height: 100dvh;
-        }
+---
+layout: default
+title: Privacy Policy
+---
+
+<section class="py-12 md:py-20 bg-arena-black border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        [id] {
-            scroll-margin-top: 80px;
-        }
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-arena-white font-bricolage">Privacy Policy</h1>
+        <p class="text-xl text-arena-light-purple mb-12">
+            How we handle and protect your personal information
+        </p>
 
-        h1, h2, .font-bricolage {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-weight: 800;
-        }
-
-        .nav-link {
-            position: relative;
-            display: inline-block;
-            padding: 8px 0;
-            color: #be95ff;
-            transition: color 0.3s ease-out;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background-color: #eee;
-            background-size: 12px 100%;
-            transition: width 0.3s ease-out, background-position 0.3s ease-out;
-        }
-
-        .nav-link:hover::after,
-        .nav-link:focus::after {
-            width: 100%;
-            background-position: 12px 0;
-        }
-
-        .nav-link:focus {
-            outline: 2px solid #6cf7f3;
-            outline-offset: 4px;
-        }
-        
-        #mobile-nav-overlay {
-            transition: visibility 0.3s, opacity 0.3s;
-            height: 100dvh;
-            width: 100vw;
-        }
-        
-        #mobile-nav-drawer {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100dvh;
-            width: 100vw;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9999px;
-            font-weight: 700;
-            padding: 0.75rem 2rem;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-primary:focus {
-            outline: 2px solid #6cf7f3;
-            outline-offset: 2px;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #5ede58;
-            color: #090909;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 100;
-            font-weight: bold;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        .policy-section {
-            margin-bottom: 2rem;
-        }
-
-        .policy-section h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #be95ff;
-        }
-
-        .policy-section p {
-            line-height: 1.8;
-            color: #eee;
-            text-align: justify;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'arena-purple': '#44148f',
-                        'arena-dark-purple': '#320775',
-                        'arena-magenta': '#990099',
-                        'arena-pale-magenta': '#B5267E',
-                        'arena-pink': '#ffb0db',
-                        'arena-green': '#5ede58',
-                        'arena-light-gray': '#eee',
-                        'arena-white': '#fff',
-                        'arena-black': '#090909',
-                        'arena-dark-blue': '#14088e',
-                        'arena-light-blue': '#8ac2d9',
-                        'arena-pale-blue': '#3292e0',
-                        'arena-blue': '#21A9FC',
-                        'arena-lavender': '#be95ff',
-                        'arena-deep-purple': '#25005f',
-                        'arena-light-purple': '#d0a4e1',
-                        'arena-teal': '#6cf7f3',
-                        'arena-dark-gray': '#333',
-                        'arena-yellow': '#edf763',
-                        
-                        'arena-deep-purple-dark': '#7033cd',
-                        'arena-yellow-dark': '#e4d700',
-                        'arena-blue-dark': '#1b90d2',
-                        'arena-pale-magenta-dark': '#971d6f',
-                        'arena-green-dark': '#1eac16',
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-arena-black text-arena-white overflow-x-hidden">
-
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-[9999] bg-arena-dark-purple bg-opacity-95 backdrop-blur-sm shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="/" class="block" aria-label="The Arena - Laser Tag, Rock Climbing, Mini Golf Home">
-                <img src="images/assets/logo/logo_tagline.svg" alt="The Arena" class="h-12 w-auto">
-            </a>
-
-            <nav class="hidden md:flex space-x-6 text-xs lg:text-sm font-medium items-center" aria-label="Main Navigation">
-                <a href="/#services" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Activities</a>
-                <a href="/#pricing" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Pricing</a>
-                <a href="/#all-inclusive" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Book Online</a>
-                <a href="/#weekend-warrior-deal" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Specials</a>
-                <a href="/#faq" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">FAQ</a>
-                <a href="/#hours" class="nav-link text-arena-lavender hover:text-arena-white transition duration-300">Contact Us</a>
-                <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="btn-primary bg-arena-purple text-arena-white hover:bg-arena-deep-purple !px-4 !py-1.5">Gift Cards</a>
-            </nav>
-
-            <button id="header-menu-button" class="md:hidden p-2 text-arena-white focus:outline-none focus:ring-2 focus:ring-arena-teal" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
-                <i class="ph ph-list ph-bold text-3xl"></i>
-            </button>
-        </div>
-    </header>
-
-    <div id="mobile-nav-overlay" class="md:hidden fixed inset-0 z-[99999] bg-arena-black opacity-0 invisible transition-all duration-300">
-        <div id="mobile-nav-drawer" class="absolute inset-0 bg-arena-dark-purple shadow-2xl translate-x-full flex flex-col p-6 overflow-hidden">
+        <article class="space-y-8">
             
-            <div class="flex justify-end items-center w-full pt-4 pb-0 px-2">
-                <button id="close-menu-button" class="p-2 text-arena-lavender hover:text-arena-white focus:outline-none focus:ring-2 focus:ring-arena-teal" aria-label="Close navigation menu">
-                    <i class="ph ph-x ph-bold text-3xl"></i>
-                </button>
+            <div class="policy-section">
+                <p class="text-arena-light-gray leading-relaxed">
+                    At The Arena (Sarnia Laser Tag), we value your trust and aim to be transparent about how we handle your information. Here's an overview of what we collect and how we use it:
+                </p>
             </div>
 
-            <div class="flex-grow flex flex-col justify-center items-center w-full max-w-md mx-auto space-y-6">
-                
-                <nav class="flex flex-col items-center w-full space-y-3" aria-label="Mobile Navigation">
-                    <div class="grid grid-cols-2 gap-3 w-full">
-                        <a href="/#services" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center focus:ring-2 focus:ring-arena-teal">Activities</a>
-                        <a href="/#pricing" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center focus:ring-2 focus:ring-arena-teal">Pricing</a>
-                        <a href="/#all-inclusive" class="mobile-nav-link text-lg font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center focus:ring-2 focus:ring-arena-teal">Book Online</a>
-                        <a href="/#weekend-warrior-deal" class="mobile-nav-link text-sm font-bold py-4 px-2 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center flex items-center justify-center leading-tight focus:ring-2 focus:ring-arena-teal">Specials & Promotions</a>
-                    </div>
-                    
-                    <a href="https://app.squareup.com/gift/XCE2PQ427HSWG/order" target="_blank" rel="noopener noreferrer" class="mobile-nav-link w-full text-lg font-bold py-4 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center focus:ring-2 focus:ring-arena-teal">Gift Cards</a>
-                    <a href="/#faq" class="mobile-nav-link w-full text-lg font-bold py-4 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center focus:ring-2 focus:ring-arena-teal">FAQ</a>
-                    <a href="/#hours" class="mobile-nav-link w-full text-lg font-bold py-4 bg-white/5 border border-white/10 text-arena-lavender hover:text-arena-white rounded-2xl transition-all text-center focus:ring-2 focus:ring-arena-teal">Contact Us</a>
-                </nav>
-
-                <div class="text-center w-full space-y-6">
-                    <div id="mobile-current-hours" class="bg-arena-green/10 border border-arena-green/40 rounded-3xl p-4 text-arena-green">
-                        <p class="text-xs uppercase tracking-widest opacity-80 mb-1 font-bold">Today's Hours</p>
-                        <div id="mobile-today-hours-text" class="text-2xl font-extrabold text-arena-white">Loading...</div>
-                    </div>
-
-                    <div class="flex justify-center space-x-12">
-                        <a href="https://www.facebook.com/thearenasarnia/" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110 active:scale-95 focus:ring-2 focus:ring-arena-teal rounded" aria-label="Visit The Arena on Facebook">
-                            <i class="ph-duotone ph-facebook-logo text-5xl"></i>
-                        </a>
-                        <a href="https://www.instagram.com/thearenasarnia" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-transform hover:scale-110 active:scale-95 focus:ring-2 focus:ring-arena-teal rounded" aria-label="Visit The Arena on Instagram">
-                            <i class="ph-duotone ph-instagram-logo text-5xl"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Information We Collect</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    When you visit The Arena or make a reservation, we collect your first and last name, email address, and payment details, which are processed securely through Square. This information allows us to manage your bookings and keep you informed about our latest events and promotions.
+                </p>
             </div>
-        </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">How We Use Your Information</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    We use your information to manage your reservations, enhance our services, and occasionally contact you with special offers and updates.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Your Consent</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    By providing your information, you consent to our use of it as described in this policy.
+                </p>
+            </div>
+
+            <div class="policy-section bg-arena-deep-purple/30 rounded-lg p-6 border-l-4 border-arena-blue">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Security Measures</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    We are committed to keeping your information secure. Payment processing is handled by Square, which uses industry-standard safeguards to ensure your data stays protected.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">No Sharing of Your Information</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    We do not sell or share your personal information with third parties. Your privacy is important to us.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Corrections and Updates</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    If you need to update or correct your information, please contact us and we will promptly make the necessary changes.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Retention Policy</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    We will retain your information only for as long as necessary to fulfill the purposes outlined in this policy.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Marketing Preferences</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    If you no longer wish to receive marketing communications from us, you can opt out at any time by clicking the unsubscribe link in our emails.
+                </p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="text-3xl font-bold text-arena-white font-bricolage">Changes to This Policy</h3>
+                <p class="text-arena-light-gray leading-relaxed">
+                    We may update this policy occasionally. We will notify you of any significant changes.
+                </p>
+            </div>
+
+            <div class="policy-section mt-12 pt-8 border-t border-arena-purple/30">
+                <p class="text-arena-light-gray leading-relaxed text-lg">
+                    Thank you for trusting us with your personal information. If you have any questions or concerns, please <a href="/#contact" class="text-arena-teal underline hover:text-arena-white transition-colors focus:ring-2 focus:ring-arena-teal rounded px-1">contact our management team</a>.
+                </p>
+            </div>
+
+        </article>
+
+
     </div>
-
-    <main id="main-content" class="pt-20">
-        <section class="py-12 md:py-20 bg-arena-dark-purple border-t border-white/5">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <h1 class="text-5xl md:text-6xl font-bold mb-4 text-arena-white font-bricolage">Privacy Policy</h1>
-                <p class="text-xl text-arena-light-purple mb-12">
-                    How we handle and protect your personal information
-                </p>
-
-                <article class="space-y-8">
-                    
-                    <div class="policy-section">
-                        <p class="text-arena-light-gray leading-relaxed">
-                            At The Arena (Sarnia Laser Tag), we value your trust and aim to be transparent about how we handle your information. Here's an overview of what we collect and how we use it:
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>Information We Collect</h3>
-                        <p>
-                            When you visit The Arena or make a reservation, we collect your first and last name, email address, and payment details, which are processed securely through Square. This information allows us to manage your bookings and keep you informed about our latest events and promotions.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>How We Use Your Information</h3>
-                        <p>
-                            We use your information to manage your reservations, enhance our services, and occasionally contact you with special offers and updates.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>Your Consent</h3>
-                        <p>
-                            By providing your information, you consent to our use of it as described in this policy.
-                        </p>
-                    </div>
-
-                    <div class="policy-section bg-arena-deep-purple/30 rounded-lg p-6 border-l-4 border-arena-blue">
-                        <h3>Security Measures</h3>
-                        <p>
-                            We are committed to keeping your information secure. Payment processing is handled by Square, which uses industry-standard safeguards to ensure your data stays protected.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>No Sharing of Your Information</h3>
-                        <p>
-                            We do not sell or share your personal information with third parties. Your privacy is important to us.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>Corrections and Updates</h3>
-                        <p>
-                            If you need to update or correct your information, please contact us and we will promptly make the necessary changes.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>Retention Policy</h3>
-                        <p>
-                            We will retain your information only for as long as necessary to fulfill the purposes outlined in this policy.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>Marketing Preferences</h3>
-                        <p>
-                            If you no longer wish to receive marketing communications from us, you can opt out at any time by clicking the unsubscribe link in our emails.
-                        </p>
-                    </div>
-
-                    <div class="policy-section">
-                        <h3>Changes to This Policy</h3>
-                        <p>
-                            We may update this policy occasionally. We will notify you of any significant changes.
-                        </p>
-                    </div>
-
-                    <div class="policy-section mt-12 pt-8 border-t border-arena-purple/30">
-                        <p class="text-arena-light-gray leading-relaxed text-lg">
-                            Thank you for trusting us with your personal information. If you have any questions or concerns, please <a href="/#contact" class="text-arena-teal underline hover:text-arena-white transition-colors focus:ring-2 focus:ring-arena-teal rounded px-1">contact our management team</a>.
-                        </p>
-                    </div>
-
-                </article>
-
-                <div class="mt-12 pt-8 border-t border-arena-purple/30">
-                    <a href="/" class="btn-primary bg-arena-blue text-arena-black hover:bg-arena-blue-dark">
-                        <i class="ph ph-arrow-left mr-2" aria-hidden="true"></i> Back to Home
-                    </a>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-arena-dark-purple border-t border-arena-purple/50 pt-16 pb-48 md:pb-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://www.facebook.com/thearenasarnia/" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-colors focus:ring-2 focus:ring-arena-teal rounded" aria-label="Visit The Arena on Facebook">
-                    <i class="ph-duotone ph-facebook-logo text-4xl"></i>
-                </a>
-                <a href="https://www.instagram.com/thearenasarnia" target="_blank" rel="noopener noreferrer" class="text-arena-lavender hover:text-arena-white transition-colors focus:ring-2 focus:ring-arena-teal rounded" aria-label="Visit The Arena on Instagram">
-                    <i class="ph-duotone ph-instagram-logo text-4xl"></i>
-                </a>
-            </div>
-
-            <div class="flex justify-center items-center gap-3 mb-8 px-4 py-3 bg-arena-deep-purple/50 rounded-lg w-fit mx-auto">
-                <div class="flex gap-0.5">
-                    <i class="ph-duotone ph-star text-arena-yellow text-base" aria-hidden="true"></i>
-                    <i class="ph-duotone ph-star text-arena-yellow text-base" aria-hidden="true"></i>
-                    <i class="ph-duotone ph-star text-arena-yellow text-base" aria-hidden="true"></i>
-                    <i class="ph-duotone ph-star text-arena-yellow text-base" aria-hidden="true"></i>
-                    <i class="ph ph-star text-arena-light-gray/40 text-base" aria-hidden="true"></i>
-                </div>
-                <div class="flex flex-col gap-0.5">
-                    <span class="text-arena-light-gray text-xs font-semibold">Google Rating</span>
-                    <span class="text-arena-yellow text-sm font-bold">4.1/5</span>
-                </div>
-            </div>
-
-            <div class="mb-10 text-arena-light-gray max-w-2xl mx-auto text-sm space-y-4">
-                <h4 class="text-lg font-bold text-arena-white mb-2">The Fine Print</h4>
-                <p>All prices are displayed without applicable taxes and are subject to change without notice.</p>
-                <p>The Arena - Sarnia Laser Tag is a local, independently owned and run business. We thank you for your continued support and patronage.</p>
-            </div>
-
-            <div class="text-sm text-arena-light-purple border-t border-arena-purple/30 pt-8">
-                <p class="mb-4">
-                    &copy; 2026 Robbie Bennett Holdings. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-	<script type="module" src="js/main.js"></script>
-    <script>
-        const headerMenuButton = document.getElementById('header-menu-button');
-        const closeMenuButton = document.getElementById('close-menu-button');
-        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-        const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-        function openMenu() {
-            mobileNavOverlay.classList.remove('opacity-0', 'invisible');
-            mobileNavDrawer.classList.remove('translate-x-full');
-            headerMenuButton.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMenu() {
-            mobileNavOverlay.classList.add('opacity-0', 'invisible');
-            mobileNavDrawer.classList.add('translate-x-full');
-            headerMenuButton.setAttribute('aria-expanded', 'false');
-        }
-
-        headerMenuButton.addEventListener('click', openMenu);
-        closeMenuButton.addEventListener('click', closeMenu);
-        mobileNavOverlay.addEventListener('click', closeMenu);
-
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-    </script>
-</body>
-</html>
+</section>

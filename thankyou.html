@@ -1,0 +1,49 @@
+---
+layout: default
+title: Thank You
+---
+
+<section class="py-12 md:py-16 bg-arena-black min-h-screen flex items-center">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <!-- Success Icon -->
+        <div class="mb-6 flex justify-center">
+            <div class="w-20 h-20 bg-arena-green/20 rounded-full flex items-center justify-center border-2 border-arena-green">
+                <i class="ph-duotone ph-check text-5xl text-arena-green" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <!-- Main Message -->
+        <h1 class="text-4xl md:text-5xl font-bold text-arena-white mb-3 font-bricolage">Thank You!</h1>
+        
+        <p class="text-lg text-arena-light-purple mb-6">
+            Your message has been sent successfully. We'll get back to you within 24 hours.
+        </p>
+
+        <!-- Countdown Timer -->
+        <div class="mb-8 space-y-3">
+            <p class="text-arena-lavender font-semibold text-sm">
+                Going home in...
+            </p>
+            <div class="text-6xl font-bold text-arena-green font-bricolage" id="countdown">
+                10
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    let seconds = 10;
+    const countdownEl = document.getElementById('countdown');
+
+    const interval = setInterval(() => {
+        seconds--;
+        countdownEl.textContent = seconds;
+
+        if (seconds <= 0) {
+            clearInterval(interval);
+            window.location.href = '/';
+        }
+    }, 1000);
+</script>
